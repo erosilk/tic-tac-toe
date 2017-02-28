@@ -1,0 +1,104 @@
+
+.hidden
+  visibility: hidden !important
+
+body
+  display: none
+  //display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 100vh
+  background: linear-gradient(135deg, rgba(162,85,227,1) 0%,rgba(255,152,101,1) 100%)
+#titlecard
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 400px
+  height: 150px
+  background-color: rgb(11, 49, 107)
+  box-shadow: -1px 2px 17px -1px rgba(0,0,0,0.75)
+  transition: linear 3s
+  h1
+    color: white
+    font-family: Reem Kufi
+    font-size: 40px
+    margin-top: 20px
+    margin-bottom: 10px
+
+  .playerSelect
+    display: flex
+    flex-direction: row
+    border-radius: 30px
+    padding: 5px 0px 5px 10px
+    border: 1px solid rgba(255, 255, 255, 0.2)
+    transition: linear 3s
+    p
+      color: white
+      font-family: Scope One
+    button
+      color: white
+      background-color: rgba(255, 255, 255, 0.11)
+      border: 0
+      width: 50px
+      border-radius: 50px
+      margin: 0 5px 0px 10px
+      transition: ease 0.1s
+      font-family: Raleway
+      &:hover
+        background-color: rgba(255, 255, 255, 0.21)
+      &:focus
+        outline: 0
+    &#gameOverWindow
+      display: none
+      font-size: 30px
+      justify-content: center
+      align-items: center
+      border: 0
+      margin-bottom: 20px
+      i
+        background-color: #184281
+        color: white
+        margin-left: 20px
+        //border: 1px solid white
+        padding: 15px
+        border-radius: 100px
+        transition: ease 1s
+        &:hover
+          background-color: #315994
+
+
+.board
+  display: flex
+  flex-direction: column
+  //border-radius: 10px
+  box-shadow: -1px 2px 17px -1px rgba(0,0,0,0.75)
+  padding: 20px
+  background: url(board.svg)
+  
+  background-repeat: no-repeat
+  background-position: center
+  .row
+    display: flex
+    flex-direction: row
+    .tile
+      display: flex
+      justify-content: center
+      align-items: center
+
+      width: 100px
+      height: 100px
+      margin: 1px
+
+      border-radius: 0px
+
+      background: linear-gradient(135deg, rgba(162,85,227,0.2) 0%,rgba(255,152,101,0.1) 100%)
+      //border: 1px solid rgb(136, 0, 70)
+
+      font-family: Raleway
+      font-size: 60px
+      color: #0B316B
+      
+      &:hover
+        background: linear-gradient(135deg, rgba(162,85,227,0.3) 0%,rgba(255,152,101,0.2) 100%)
+
