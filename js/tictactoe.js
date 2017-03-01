@@ -133,8 +133,8 @@ function computerTurn(){
 			pick = getRandomPick();
 		} else if (difficulty == 2){
 			pick = nextGenAIPick();
-		} else if (difficulty == 2){
-			pick = getRandomPick();
+		} else if (difficulty == 3){
+			pick = nextGenAIPick();
 		}
 		
 		console.log(computerPicks);
