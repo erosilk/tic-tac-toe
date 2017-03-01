@@ -51,44 +51,47 @@ function getRandomPick() {
 
 function nextGenAIPick(){
 	if (playerPicks.length > 0 && computerPicks.length > 0){
+
+	//Combinaciones posibles del jugador
 	var playerCombinations = winningCombinations.slice();
 	playerCombinations.forEach(function(combination){
 		playerCombinations.push(combination.filter(function(val){
 			return !playerPicks.includes(val);
 		}));
 	})
+
+	//Combinaciones posibles de la maqina
 	var computerCombinations = winningCombinations.slice();
 	computerCombinations.forEach(function(combination){
 		computerCombinations.push(combination.filter(function(val){
 			return !computerPicks.includes(val);
 		}));
 	})
-	/*playerCombinations.forEach(function(combination){
-		computerPicks.forEach(function(val){
-			if (combination.includes(val) && computerPicks.includes(val)){
-				combination.pop();
-			}
-		});
-	})*/
+
 	playerCombinations = playerCombinations.filter(String);
-	//var potentialCombinations = playerCombinations.slice(8, 16);
-	//potentialCombinations.sort(function(a,b){return a.length>b.length})
+
 	let allPicks = playerPicks.concat(computerPicks);
 
 	defensiveCombination = playerCombinations.sort(function(a,b){return a.length-b.length})[0]
 	offensiveCombination = computerCombinations.sort(function(a,b){return a.length-b.length})[0]
 
+	// Se define una jugada defensiva
 	defensivePick = playerCombinations.sort(function(a,b){return a.length-b.length})[0][0];
+	// Se define una jugada ofensiva
 	offensivePick = computerCombinations.sort(function(a,b){return a.length-b.length})[0][0]
 
-	if (((defensiveCombination.length <= offensiveCombination.length) && !allPicks.includes(defensivePick)) || (allPicks.includes(offensivePick) && !allPicks.includes(defensivePick))){
+	// Si conviene hacer una jugada defensiva, se hace esta. Si la maquina esta a una jugada de ganar y es su turno, ejecuta la jugada ofensiva.
+	// Si ninguna de las dos jugadas definidas anteriormente se encuentran disponibles, se hace una jugada aleatoria.
+	// Problemas: Convendria que si ninguna de las dos jugadas este disponible, intente la segunda mejor jugada defensiva/ofensiva.
+	if (((defensiveCombination.length < offensiveCombination.length) && !allPicks.includes(defensivePick)) || (allPicks.includes(offensivePick) && !allPicks.includes(defensivePick))){
 		return defensivePick;
-	} else if ((offensiveCombination.length < defensiveCombination.length && !allPicks.includes(offensivePick)) || (allPicks.includes(defensivePick) && !allPicks.includes(offensivePick))){
+	} else if ((offensiveCombination.length <= defensiveCombination.length && !allPicks.includes(offensivePick)) || (allPicks.includes(defensivePick) && !allPicks.includes(offensivePick))){
 		return offensivePick;
 	} else if (allPicks.includes(defensivePick) && allPicks.includes(offensivePick)){
 		return getRandomPick();
 	}
 	} else {
+		//Si nadie hizo una jugada, la primer jugada es aleatoria.
 		return getRandomPick();
 	}
 }
