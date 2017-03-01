@@ -1,7 +1,14 @@
 var selectX = document.getElementById("selectx");
 var selectO = document.getElementById("selecto");
 
+var selectEasy = document.getElementById("selecteasy");
+var selectMedium = document.getElementById("selectmedium");
+var selectHard = document.getElementById("selecthard");
+
 var selectWindow = document.getElementById("selectwindow");
+
+var difficultyWindow = document.getElementById("difficultywindow");
+
 var gameOverWindow = document.getElementById("gameOverWindow");
 var gameOverText = document.getElementById("gameOverText");
 
@@ -15,7 +22,7 @@ var computer = "";
 
 var playerPicks = [];
 var computerPicks = [];
-
+var difficulty = 1;
 
 const winningCombinations = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 
@@ -23,11 +30,23 @@ var gameStarted = false;
 var yourTurn = false;
 var gameFinished = false;
 
+function selectDifficulty(val, callback){
+	difficulty = val;
+	difficultyWindow.style.display = "none";
+	showSelectWindow();
+}
+
+
 function removeSelectWindow(){
 	//$("#selectwindow").animateCss('fadeOut');
 	selectwindow.style.display = "none";
 	
 	//titleCard.style.justifyContent = "center";
+}
+
+function showSelectWindow(){
+	$("#selectwindow").animateCss('fadeIn');
+	selectwindow.style.display = "flex";
 }
 
 function choosePlayer(val){
@@ -96,10 +115,6 @@ function nextGenAIPick(){
 	}
 }
 
-
-
-
-
 function playerTurn(val){
 	//console.log(tiles);
 	if (gameStarted && yourTurn && tiles[val].innerHTML == ""){
@@ -113,9 +128,15 @@ function playerTurn(val){
 
 function computerTurn(){
 	if (gameStarted && !yourTurn){
-		var pick = nextGenAIPick();
-		//var pick = getRandomPick();
-		//console.log(pick);
+		var pick = 0;
+		if (difficulty == 1){
+			pick = getRandomPick();
+		} else if (difficulty == 2){
+			pick = nextGenAIPick();
+		} else if (difficulty == 2){
+			pick = getRandomPick();
+		}
+		
 		console.log(computerPicks);
 		tiles[pick].innerHTML = computer;
 		computerPicks.push(pick);
@@ -123,8 +144,6 @@ function computerTurn(){
 
 	return check(computerPicks) ? gameOver(computer) : (yourTurn = true, tieCheck());
 
-	/*check();
-	yourTurn = true;*/
 }
 
 function gameStart(){
@@ -167,8 +186,7 @@ function replay(){
 		for (var i = 1; i < 10; i++){
 			tiles[i].innerHTML = "";
 		}
-	$("#selectwindow").animateCss('fadeIn');
-	selectwindow.style.display = "flex";
+	showSelectWindow();
 	gameOverWindow.style.display = "none"
 	yourTurn = true;
 	gameStarted = false;
@@ -177,6 +195,8 @@ function replay(){
 	computerPicks = [];
 	}
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function (event) {
 	
@@ -200,6 +220,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	selectO.onclick = function(){choosePlayer("O")};
 	selectX.onclick = function(){choosePlayer("X")};
 
+	selectEasy.onclick = function(){selectDifficulty(1, showSelectWindow)};
+	selectMedium.onclick = function(){selectDifficulty(2, showSelectWindow)};
+	selectHard.onclick = function(){selectDifficulty(3, showSelectWindow)};
+	
 	replayButton.onclick = function(){replay()};
 
 	$.fn.extend({
