@@ -11,6 +11,7 @@ body
   height: 100vh
   background: linear-gradient(135deg, rgba(162,85,227,1) 0%,rgba(255,152,101,1) 100%)
 #titlecard
+  position: relative
   display: flex
   flex-direction: column
   align-items: center
@@ -64,10 +65,13 @@ body
 
     &#gameOverWindow
       display: none
+      position: absolute
+      top: 50px
       font-size: 30px
       justify-content: center
       align-items: center
       border: 0
+      margin: 0
       margin-bottom: 20px
       i
         background-color: #184281
