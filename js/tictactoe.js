@@ -139,7 +139,7 @@ class TicTacToe {
         if (this.gameStarted && this.yourTurn && tiles[val].innerHTML == "") {
             tiles[val].innerHTML = this.player;
             this.playerPicks.push(val);
-            return this.check(this.playerPicks) ? this.gameOver(player) : (this.yourTurn = false, this.tieCheck(), this.computerTurn());
+            return this.check(this.playerPicks) ? this.gameOver(this.player) : (this.yourTurn = false, this.tieCheck(), this.computerTurn());
         }
 
     }
