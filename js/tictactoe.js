@@ -3,7 +3,6 @@ var selectO = document.getElementById("selecto");
 
 var selectEasy = document.getElementById("selecteasy");
 var selectMedium = document.getElementById("selectmedium");
-var selectHard = document.getElementById("selecthard");
 
 var selectWindow = document.getElementById("selectwindow");
 
@@ -133,8 +132,6 @@ function computerTurn(){
 			pick = getRandomPick();
 		} else if (difficulty == 2){
 			pick = nextGenAIPick();
-		} else if (difficulty == 3){
-			pick = nextGenAIPick();
 		}
 		
 		console.log(computerPicks);
@@ -222,8 +219,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	selectEasy.onclick = function(){selectDifficulty(1, showSelectWindow)};
 	selectMedium.onclick = function(){selectDifficulty(2, showSelectWindow)};
-	selectHard.onclick = function(){selectDifficulty(3, showSelectWindow)};
-	
+		
 	replayButton.onclick = function(){replay()};
 
 	$.fn.extend({
